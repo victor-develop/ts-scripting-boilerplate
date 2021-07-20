@@ -1,4 +1,4 @@
-{
+{// override, visibility on fraud customers
   "env": {
     "browser": false,
     "es6": true,
