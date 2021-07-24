@@ -2,6 +2,7 @@ import * as bunyan from 'bunyan'
 import * as faker from 'faker'
 import * as fs from 'fs'
 import * as highland from 'highland'
+import { doPrivateThings } from '../private';
 import { transformStdOut } from './transformStdOut';
 
 /**
@@ -18,6 +19,7 @@ const script_run_slug = faker.lorem.slug() + '_' + (new Date()).toISOString();
 
 /**
  *  Prepare output streams
+ *  fork more streams to do your stuff
  */
 const duplex_output_stream = highland()
 const pre_std_out_stream = duplex_output_stream.fork()
@@ -30,7 +32,8 @@ file_out_stream.pipe(script_out_file)
 // @ts-ignore
 const logger = bunyan.createLogger({name: script_run_slug, stream: duplex_output_stream})
 
-logger.info({apple: 'boom', blossom: 'cool'})
+doPrivateThings(logger.child({private: 'true'}))
+
 logger.info('script run: finished!')
 process.on('exit', (code) => {
     logger.info(`process exist with ${code}`)

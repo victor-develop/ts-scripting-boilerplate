@@ -1,6 +1,6 @@
 import {default as safeStringify} from 'fast-safe-stringify'
 const formatJSONString = (x:unknown) => safeStringify(
-    JSON.parse((x as string)),
+    x as string,
     null,
     2
 )
@@ -17,5 +17,6 @@ const addSplitLine = (x:string) => {
 export const transformStdOut = (stream: Highland.Stream<unknown>) => stream
 // For standard output you just want to inspect a few samples
 .take(5)
+.map(JSON.parse)
 .map(formatJSONString)
 .map(addSplitLine)

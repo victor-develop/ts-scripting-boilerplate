@@ -31,4 +31,4 @@ build/
 .env
 # npm ignore ._* by default
 ._log/
-._private/
+src/private
