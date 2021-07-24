@@ -34,6 +34,7 @@
   },
   "scripts": {
     "d": "nodemon --exec ts-node",
+    "repl": "npm run d -- --files src/repl/index.ts",
     "dev": "nodemon --exec ts-node --files src/main.ts",
     "start": "node build/src/main.js",
     "clean": "rimraf coverage build tmp",
@@ -49,6 +50,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bunyan": "^1.8.15",
+    "chalk": "^4.1.1",
     "dotenv": "^10.0.0",
     "faker": "^5.5.3",
     "fast-safe-stringify": "^2.0.8",

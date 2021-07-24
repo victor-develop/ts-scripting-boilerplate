@@ -1,12 +1,21 @@
 import {default as safeStringify} from 'fast-safe-stringify'
-
 const formatJSONString = (x:unknown) => safeStringify(
     JSON.parse((x as string)),
     null,
     2
 )
 
+import * as chalk from 'chalk'
+import {EOL} from 'os'
+const addSplitLine = (x:string) => {
+  const [terminal_width] = process.stdout.getWindowSize()
+  const line = chalk.blue.underline(Array(terminal_width).fill(' ').join(''))
+  return `${x}${EOL}${line}${EOL}${EOL}`
+}
+
+// This demonstrates how you can format the standard output
 export const transformStdOut = (stream: Highland.Stream<unknown>) => stream
-// This is an example, you can keep add multiple map() to transform the standard output
+// For standard output you just want to inspect a few samples
+.take(5)
 .map(formatJSONString)
-.map(x => x + '\n')
+.map(addSplitLine)
