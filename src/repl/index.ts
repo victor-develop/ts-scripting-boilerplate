@@ -2,7 +2,6 @@ import * as bunyan from 'bunyan'
 import * as faker from 'faker'
 import * as fs from 'fs'
 import * as highland from 'highland'
-import { doPrivateThings } from '../private';
 import { transformStdOut } from './transformStdOut';
 
 /**
@@ -32,7 +31,7 @@ file_out_stream.pipe(script_out_file)
 // @ts-ignore
 const logger = bunyan.createLogger({name: script_run_slug, stream: duplex_output_stream})
 
-doPrivateThings(logger.child({private: 'true'}))
+logger.info('feels good')
 
 logger.info('script run: finished!')
 process.on('exit', (code) => {
