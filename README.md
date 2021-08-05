@@ -1,4 +1,4 @@
-# 40 lines - Build A Typescript Repo for Daily Experiments
+# Build A Typescript Repo for Daily Experiments
 
 This repo demonstrates a skeleton for storing daily typescript snippets in a single place, with nice supports for streaming output to files, terminal, and any other sources in only 40-ish lines of codes.
 
