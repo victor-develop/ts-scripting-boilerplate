@@ -21,19 +21,22 @@ const script_run_slug = faker.lorem.slug() + '_' + (new Date()).toISOString();
  *  fork more streams to do your stuff
  */
 const duplex_output_stream = highland()
+
 const pre_std_out_stream = duplex_output_stream.fork()
-const file_out_stream = duplex_output_stream.fork()
-
-
-const script_out_file = fs.createWriteStream(`./_log/${script_run_slug}.log`)
 transformStdOut(pre_std_out_stream).pipe(process.stdout)
+
+const file_out_stream = duplex_output_stream.fork()
+const script_out_file = fs.createWriteStream(`./_log/${script_run_slug}.log`)
 file_out_stream.pipe(script_out_file)
 // @ts-ignore
 const logger = bunyan.createLogger({name: script_run_slug, stream: duplex_output_stream})
 
 logger.info('feels good')
-
+// expriments
+logger.info('experiments 123')
 logger.info('script run: finished!')
+
+
 process.on('exit', (code) => {
     logger.info(`process exist with ${code}`)
 })
