@@ -4,6 +4,13 @@ I want to establish a working pattern that we can use js/ts to quickly explore d
 
 I want to make it so easy that writing some working code with working test and persisting it no longer looks scary, where you are forced to setup a repo and many basic things.
 
+# Start coding
+
+```
+npm run repl
+```
+
+
 ## License
 
 Licensed under the APLv2. See the [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE) file for details.
