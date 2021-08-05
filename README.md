@@ -1,8 +1,31 @@
-# scripting-boilerplate
+# 40 lines - Build A Typescript Repo for Daily Experiments
 
-I want to establish a working pattern that we can use js/ts to quickly explore data, execute snippets, persist output and adjust code quickly. And of course, to stablize this pattern via code.
+This repo demonstrates a skeleton for storing daily typescript snippets in a single place, with nice supports for streaming output to files, terminal, and any other sources in only 40-ish lines of codes.
 
-I want to make it so easy that writing some working code with working test and persisting it no longer looks scary, where you are forced to setup a repo and many basic things.
+```sh
+    ┌──────────────┐
+    │ Experimental │
+    │    Codes     │
+    └──────┬───────┘
+           │
+           │logs
+           │
+           ▼
+    ┌──────────────┐
+    │              │
+    │ log stream   │
+    └─┬────────┬─┬─┘
+      │        │ │
+      │        │ └────────┐
+      ▼        ▼          │
+┌──────────┐ ┌───────┐ ┌──▼──┐
+│          │ │       │ │     │
+│ terminal │ │ files │ │ ... │
+│          │ │       │ │     │
+└──────────┘ └───────┘ └─────┘
+```
+
+A video tutorial on explaining the design is [here](https://youtube.com/playlist?list=PLZE9hPvxmyQBWmJIGQkOJUAkPuRRsp1am)
 
 # Start coding
 
@@ -10,6 +33,7 @@ I want to make it so easy that writing some working code with working test and p
 npm run repl
 ```
 
+You likely want to play around [the code from here](src/repl/index.ts)
 
 ## License
 
