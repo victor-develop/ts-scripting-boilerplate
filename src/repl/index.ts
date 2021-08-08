@@ -5,7 +5,6 @@ import { JSONString } from '../json/types';
 import { transformStdOut } from './transformStdOut';
 import { Server as SocketIoServer } from 'socket.io';
 import * as  Koa from 'koa';
-import * as KoaStatic from 'koa-static';
 import * as KoaMount from 'koa-mount';
 import * as http from 'http';
 
@@ -13,6 +12,7 @@ const script_run_slug = faker.lorem.slug() + '_' + (new Date()).toISOString();
 const log_dir = './_log';
 
 import * as fs from 'fs'
+import { serveStatic } from './webOutputStream/serveStatic';
 function stream2File(s: Highland.Stream<JSONString>): void {
     (!fs.existsSync(log_dir)) && fs.mkdirSync(log_dir);
     s.pipe(
@@ -52,12 +52,15 @@ async function main() {
     logger.info('feels good')
     logger.info('experiments 567')
     
+    /**
+     * Setup koa app
+     */
     const rootApp = new Koa();
+    rootApp.use(KoaMount('/app', serveStatic()))
 
-    const staticFileServer = new Koa()
-    staticFileServer.use(KoaStatic('src/repl/webOutputStream/staticAssets'));
-    rootApp.use(KoaMount('/app', staticFileServer))
-
+    /**
+     * Initialize http server
+     */
     const server = http.createServer(rootApp.callback())
     const port = 3003
     server.on('listening', () => {
@@ -65,10 +68,21 @@ async function main() {
     })
     server.listen(port);
 
+    /**
+     *  Initialize socket io
+     */
     const io = new SocketIoServer(server);
-    io.on('connection', (socket) => {
+    io.once('connection', (socket) => {
+        logger_stream.on('data', (s => {
+            io.emit('jsonstring', s)
+        }))
         logger.info(`a user connected: ${socket.id}`);
     });
+
+
+    setInterval(() => {
+        logger.info('now socket io is ready, I am gonna shout!')
+    }, 3000)
 
     logger.info('script run: finished!')
 
