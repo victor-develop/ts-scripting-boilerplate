@@ -15,7 +15,7 @@ const addSplitLine = (x:string) => {
 
 import { JSONString } from '../json/types'
 // This demonstrates how you can format the standard output
-export const transformStdOut = (stream: Highland.Stream<JSONString>) => stream
+export const transformStdOut = (stream: Highland.Stream<JSONString>):Highland.Stream<string> => stream
 // For standard output you just want to inspect a few samples
 .take(5)
 .map(JSON.parse)
