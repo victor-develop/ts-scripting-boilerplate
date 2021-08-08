@@ -32,8 +32,7 @@ async function main() {
     /**
      * Start logging to the logger stream.
      */
-    // @ts-ignore ignore the type error becuase actually highland is compatible with native Node.js stream
-    const logger = bunyan.createLogger({ name: script_run_slug, stream: logger_stream })
+    const logger = bunyan.createLogger({name: script_run_slug, stream: (logger_stream as unknown as NodeJS.WritableStream)})
 
     /**
      * Do whatever experiments
