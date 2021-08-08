@@ -8,6 +8,7 @@ const script_run_slug = faker.lorem.slug() + '_' + (new Date()).toISOString();
 const log_dir = './_log';
 
 import * as fs from 'fs'
+import { serveStatic } from './webOutputStream';
 function stream2File(s: Highland.Stream<JSONString>): void {
     (!fs.existsSync(log_dir)) && fs.mkdirSync(log_dir);
     s.pipe(
@@ -39,6 +40,9 @@ async function main() {
      */
     logger.info('feels good')
     logger.info('experiments 567')
+    
+    serveStatic(logger.child({mod: 'serveStatic'}))
+
     logger.info('script run: finished!')
 
     process.on('exit', (code) => {

@@ -53,6 +53,7 @@
     "chalk": "^4.1.1",
     "dotenv": "^10.0.0",
     "faker": "^5.5.3",
+    "farrow-http": "^1.10.9",
     "fast-safe-stringify": "^2.0.8",
     "highland": "^2.13.5",
     "openapi-client-axios": "^3.14.0",
