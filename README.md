@@ -5,7 +5,8 @@ I want to establish a working pattern that we can use js/ts to quickly explore d
 I want to make it so easy that writing some working code with working test and persisting it no longer looks scary, where you are forced to setup a repo and many basic things.
 
 # How to write script
-
+[x] bullmq ran
+[] [bull master UI](https://github.com/hans-lizihan/bull-master) not yet setup
 
 ## output: ._log/ files
 
@@ -19,3 +20,4 @@ Use `npm run dlog` : this will trigger a shell script which will try to cat firs
 ## License
 
 Licensed under the APLv2. See the [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE) file for details.
+

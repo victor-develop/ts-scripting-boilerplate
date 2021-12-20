@@ -48,7 +48,9 @@
   "author": "Victor Zhou",
   "license": "Apache-2.0",
   "dependencies": {
+    "@koa/router": "^10.1.1",
     "axios": "^0.21.4",
+    "bull-master": "^1.0.5",
     "bullmq": "^1.59.2",
     "bunyan": "^1.8.15",
     "chalk": "^4.1.1",
@@ -56,6 +58,7 @@
     "faker": "^5.5.3",
     "fast-safe-stringify": "^2.0.8",
     "highland": "^2.13.5",
+    "koa": "^2.13.4",
     "openapi-client-axios": "^3.14.0",
     "tslib": "~2.1.0"
   },
