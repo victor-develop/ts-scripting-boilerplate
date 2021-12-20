@@ -33,6 +33,9 @@ const logger = bunyan.createLogger({name: script_run_slug, stream: duplex_output
 
 logger.info('feels good')
 
+import {main as helloBullMq} from '../hello-bullmq';
+helloBullMq({logger})
+
 logger.info('script run: finished!')
 process.on('exit', (code) => {
     logger.info(`process exist with ${code}`)
