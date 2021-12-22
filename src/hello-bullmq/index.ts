@@ -13,7 +13,6 @@ export async function main(args: any) {
   logger.info('bull-mq');
 
   const connection =  {
-    host: "redis",
     port: 6379
   }
 
