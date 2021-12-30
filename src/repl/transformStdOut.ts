@@ -16,7 +16,6 @@ const addSplitLine = (x:string) => {
 // This demonstrates how you can format the standard output
 export const transformStdOut = (stream: Highland.Stream<unknown>) => stream
 // For standard output you just want to inspect a few samples
-.take(5)
 .map(JSON.parse)
 .filter(x => x.log_name === 'hello.bull-mq')
 .map(formatJSONString)

@@ -1,8 +1,6 @@
 import { Queue } from 'bullmq';
 import { Worker } from 'bullmq'
 
-
-
 export async function main(args: any) {
   const logger = args.logger.child({log_name: 'hello.bull-mq'})
 
@@ -17,7 +15,11 @@ export async function main(args: any) {
   }
 
   const queue = new Queue('Paint', { connection});
-  queue.add('cars', { color: 'blue' });
+
+  setInterval(() => {
+    queue.add('cars', { color: 'blue.' + (new Date()).toISOString() });
+  }, 1000)
+
   const worker = new Worker('Paint', async job => {
     if (job.name === 'cars') {
       await paintCar(job.data.color);
@@ -25,3 +27,4 @@ export async function main(args: any) {
   }, {connection});
   return {worker, queue}
 }
+
